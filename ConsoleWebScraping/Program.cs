@@ -9,11 +9,14 @@ namespace ConsoleWebScraping
             Console.WriteLine("Starting web scraping...");
 
             var ibovespaWebScraping =  new IbovespaWebScraping();
-            var result = ibovespaWebScraping.GetIbovespaInfo();
+            var ibovespaInfo = ibovespaWebScraping.GetIbovespaInfo();
+            var filePath = CsvHelper.SaveIbovespaInfo(ibovespaInfo);
 
-            Console.WriteLine("O total de pontos do dia é: " + result.TotalPoints);
+            Console.WriteLine("O total de pontos do dia é: " + ibovespaInfo.TotalPoints);
 
-            Console.WriteLine("A variação total do dia é: " + result.PercentagemVariation);
+            Console.WriteLine("A variação total do dia é: " + ibovespaInfo.PercentagemVariation);
+
+            Console.WriteLine("O diretório onde o seu csv foi salvo: " + filePath);
         }
     }
 }
